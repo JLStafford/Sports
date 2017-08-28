@@ -1,13 +1,15 @@
+var bcrypt = require('bcrypt');
+const saltRounds = 6;
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('table_name').del()
+  return knex('users').del()
     .then(function () {
       // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
+      return knex('users').insert([
+        {first_name: 'Michael', last_name: 'Jordan', email: 'belikemike@air.net', password: `${bcrypt.hashSync("spacejam", saltRounds)}`},
+        {first_name: 'Mark', last_name: 'McGuire', email: 'getbig@steroids.net', password: `${bcrypt.hashSync("juicin", saltRounds)}`},
+        {first_name: 'Fernando', last_name: 'Torres', email: 'neverwalkalone@lp.net', password: `${bcrypt.hashSync("football", saltRounds)}`}
       ]);
     });
 };

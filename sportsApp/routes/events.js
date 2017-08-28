@@ -2,9 +2,14 @@ var express = require('express');
 var router = express.Router();
 var knex = require('../db/knex.js');
 
-/* GET events page. */
-router.get('/', function(req, res, next) {
-  res.render('events', { title: 'Events' });
+/* GET ividual indevents page. */
+router.get('/:id', function(req, res, next) {
+  res.render('indEvent');
+});
+
+//update/rsvp for ind event
+router.post('/:id/edit', function(req, res, next) {
+  res.redirect('/');
 });
 
 module.exports = router;
