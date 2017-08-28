@@ -2,11 +2,15 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('events', function(table) {
     table.increments();
-    table.string('sport');
+    table.string('title');
     table.string('location');
+    table.date('date');
     table.integer('time');
-    table.string('skill_level');
-    table.boolean('public')
+    table.string('type');
+    table.integer('host_id');
+    table.string('description');
+    table.boolean('public');
+    table.timestamps(true, true)
   })
 };
 
