@@ -4,6 +4,8 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.string('username');
     table.string('password');
+    table.string('saved_events');
+    table.string('past_events')
   })
 };
 
