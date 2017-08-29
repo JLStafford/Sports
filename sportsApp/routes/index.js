@@ -29,7 +29,11 @@ router.get('/newEvent', function(req, res, next) {
 
 //post create new event form
 router.post('/newEvent', function(req, res, next) {
-  res.redirect('/profile');
+  console.log(req.body)
+  knex.raw(`INSERT INTO events VALUES (default, '${req.body.title}', '${req.body.location}', '${req.body.date}', '${req.body.time}', '${req.body.type}', '${req.cookies.user_id}', '${req.body.description}', ${req.body.private})`)
+  .then(function(data) {
+    res.redirect('/profile');
+  });
 });
 
 
