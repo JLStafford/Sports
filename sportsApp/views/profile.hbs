@@ -1,0 +1,8 @@
+<div class="profile-forms">
+  <form class="delete-user" action="/users/{{user.id}}/delete" method="POST">
+    <input type="submit" name="delete" value="Delete">
+  </form>
+  <form class="logout-user" action="/users/{{user.id}}/logout" method="get">
+    <input type="submit" name="logout" value="Logout">
+  </form>
+</div>
