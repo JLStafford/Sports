@@ -1,0 +1,19 @@
+<div class="ind-event">
+  {{#each events}}
+    {{#if @first}}
+      <p>{{this.title}}</p>
+      <p>Location: {{this.location}}</p>
+      <p>Date: {{this.date}}</p>
+      <p>Time: {{this.time}}</p>
+      <p>Type of Event: {{this.type}}</p>
+      <p>Description: {{this.description}}</p>
+      <p>Private Event: {{this.private}}</p>
+      <p>Date: {{this.date}}</p>
+    {{/if}}
+  {{/each}}
+  <h5>Attendees:</h5>
+  {{#each events}}
+    <p>{{this.first_name}}</p>
+  {{/each}}
+
+</div>

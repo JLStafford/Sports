@@ -15,3 +15,34 @@
     <input type="submit" name="create" value="Create New Event">
   </form>
 </div>
+
+<div class="events-upcoming">
+  {{#each events}}
+
+      <div class="individual-event">
+        <div class="event-title"><h3>{{@index}}: {{this.title}}</h3></div>
+        <div class="event-date"><p>Date: {{@index}}: {{this.date}}</p></div>
+        <div class="event-time"><p>Time: {{@index}}: {{this.time}}</p></div>
+      </div>
+
+  {{/each}}
+</div>
+<div class="events-past">
+  {{#each events}}
+    <div class="individual-event">
+      <div class="event-title"><h3>{{@index}}: {{this.title}}</h3></div>
+      <div class="event-date"><p>Date: {{@index}}: {{this.date}}</p></div>
+    </div>
+  {{/each}}
+</div>
+<div class="events-host">
+  {{#each myEvents}}
+    {{#if {{@index}}: {{this.host_id}} === ${userInfo.id}}
+      <div class="individual-event">
+        <div class="event-title"><h3>{{@index}}: {{this.title}}</h3></div>
+        <div class="event-date"><p>Date: {{@index}}: {{this.date}}</p></div>
+        <div class="event-time"><p>Time: {{@index}}: {{this.time}}</p></div>
+      </div>
+    {{/if}}
+  {{/each}}
+</div>

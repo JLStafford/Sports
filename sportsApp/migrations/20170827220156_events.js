@@ -9,7 +9,7 @@ exports.up = function(knex, Promise) {
     table.string('type');
     table.integer('host_id');
     table.string('description');
-    table.boolean('public');
+    table.boolean('private');
     table.timestamps(true, true)
   })
 };

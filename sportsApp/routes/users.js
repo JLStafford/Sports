@@ -50,7 +50,13 @@ router.get('/:id', function(req, res, next) {
   if(req.cookies.user_id) {
     knex.raw(`SELECT * FROM users where id = ${req.cookies.user_id}`)
     .then(function(user) {
-      res.render('profile', {user: user.rows[0], })
+      knex.raw(`SELECT * FROM events where host_id = ${req.cookies.user_id}`)
+      .then(function(user1) {
+        knex.raw(`SELECT * FROM events`)
+        .then(function(user2) {
+          res.render('profile', {userInfo: user.rows[0], myEvents: user1.rows, events: user2.rows})
+        })
+      })
     })
   } else {
     res.redirect('/login');
