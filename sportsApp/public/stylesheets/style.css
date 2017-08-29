@@ -15,11 +15,21 @@
 }
 
 .login-box {
-  width: 50vw;
-  margin-left: 7.5vw;
+  width: 40vw;
+  margin-left: 15vw;
 }
 
 .loginBG {
+  background: url('login.jpeg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh;
+  width: auto;
+}
+
+.newEventBG {
   background: url('login.jpeg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
