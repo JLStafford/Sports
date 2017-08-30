@@ -19,6 +19,7 @@ router.get('/:id', function(req, res, next) {
 //update/rsvp for ind event
 router.post('/:id/edit', function(req, res, next) {
   if (req.cookies.user_id) {
+    // knex.raw(`INSERT INTO atendee_events VALUES (default, ${req.cookies.user_id})`)
 
   }
   res.redirect('/');

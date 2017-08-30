@@ -81,19 +81,19 @@ Handlebars.registerHelper('isPast', function(items, options) {
 
 // get profile view
 router.get('/:id', function(req, res, next) {
-  if(req.cookies.user_id) {
+  if(req.cookies.user_id === req.params.id) {
     knex.raw(`SELECT * FROM users where id = ${req.cookies.user_id}`)
     .then(function(user) {
       knex.raw(`SELECT * FROM events where host_id = ${req.cookies.user_id}`)
       .then(function(user1) {
-        knex.raw(`SELECT * FROM events`)
+        knex.raw(`SELECT * FROM events JOIN atendee_events ON atendee_events.event_id = events.id WHERE atendee_events.user_id = ${req.cookies.user_id}`)
         .then(function(user2) {
           res.render('profile', {userInfo: user.rows[0], myEvents: user1.rows, events: user2.rows})
         })
       })
     })
   } else {
-    res.redirect('/login');
+    res.redirect('/users/login');
   }
 });
 
