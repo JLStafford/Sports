@@ -46,12 +46,18 @@
   font-size: 32px;
 }
 
+.opacity-results {
+  background: #fff;
+  opacity: .94;
+  z-index: ;
+}
+
 .field-day-splash {
   font-size: 8rem;
 }
 
 .rounded-box {
-  border-radius: 2%;
+  border-radius: 20px;
 }
 
 .spacer {

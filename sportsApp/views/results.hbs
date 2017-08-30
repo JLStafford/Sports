@@ -1,9 +1,25 @@
-<div class="row">
+<div class="loginBG">
+<div class="container">
+  <div class="spacer">
+
+  </div>
+  <div class="section">
+
+  <div class="row center">
+    <div class="col s12 m4 offset-m4 white opacity-results ">
+      <h2 class="light">Results</h2>
+    </div>
+  </div>
+</div>
+<div class="row center">
   {{#each events}}
-    <div class="col m4">
-      <div class="card">
+    <div class="col m6">
+      <div class="card opacity-results white z-depth-5  ">
         <div class="card-info">
-          <span class="card-title" style="width:100%; background: rgba(0, 0, 0, 0.5);">{{this.title}}</span>
+          <div class="section">
+          <span class="card-title" style="width:100%; background: rgba(0, 0, 0, 0.0);">{{this.title}}</span>
+          </div>
+          <div class="divider"></div>
         </div>
         <div class="card-content">
           <p>Location: {{this.location}}</p>
@@ -17,4 +33,15 @@
       </div>
     </div>
   {{/each}}
+</div>
+<div class="row center">
+  <div class="col s12 m4 offset-m2">
+    <button class="btn-large" type="submit" name="action">Back
+    </button>
+  </div>
+  <div class="col s12 m4">
+    <input class="btn-large" type="submit" name="submit" value="Create">
+    <div class="row spacer"></div>
+  </div>
+</div>
 </div>
