@@ -26,9 +26,11 @@ router.post('/search', function(req, res, next) {
 //get results
 router.get('/results', function(req, res, next) {
   if(req.cookies.user_id) {
-
+    knex.raw(`SELECT * FROM events`)
+    .then(function(data) {
+      res.render('results', {events: data.rows});
+    });
   }
-  res.render('results');
 });
 
 //get create new event form
