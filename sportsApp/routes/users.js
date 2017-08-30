@@ -58,21 +58,21 @@ function today() {
 }
 
 //helper methods
-Handlebars.registerHelper('isFuture', function(items, options) {
+Handlebars.registerHelper('isPast', function(items, options) {
   var out = "";
   for(var i=0; i< items.length; i++) {
     if(new Date(items[i].date).valueOf() < new Date(today()).valueOf()) {
-    out =  out + "<div class='upcomingEvent'><div class='title'><h5>" + items[i].title + "</h5></div>" + "<div class='date'>" + items[i].date + "</div>" + "<div class='time'>" + items[i].time + "</div></div>"
+    out =  out + "<div class='upcomingEvent'><div class='title'><h5>" + items[i].title + "</h5></div>" + "<div class='date'>" + items[i].date + "</div></div>"
   }
 }
   return out;
 });
 
-Handlebars.registerHelper('isPast', function(items, options) {
+Handlebars.registerHelper('isFuture', function(items, options) {
   var out = "";
   for(var i=0; i< items.length; i++) {
     if(new Date(items[i].date).valueOf() > new Date(today()).valueOf()) {
-    out =  out + "<div class='pastEvent'><div class='title'><h5>" + items[i].title + "</h5></div>" + "<div class='date'>" + items[i].date + "</div></div>"
+    out =  out + "<div class='pastEvent'><div class='title'><h5>" + items[i].title + "</h5></div>" + "<div class='date'>" + items[i].date  + "<div class='time'>" + items[i].time + "</div></div>"
   }
 }
   return out;
