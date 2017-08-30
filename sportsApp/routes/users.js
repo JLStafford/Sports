@@ -58,21 +58,21 @@ function today() {
 }
 
 //helper methods
-Handlebars.registerHelper('isFuture', function(items, options) {
+Handlebars.registerHelper('isPast', function(items, options) {
   var out = "";
   for(var i=0; i< items.length; i++) {
     if(new Date(items[i].date).valueOf() < new Date(today()).valueOf()) {
-    out =  out + "<div class='upcomingEvent'><div class='title'><h5>" + items[i].title + "</h5></div>" + "<div class='date'>" + items[i].date + "</div>" + "<div class='time'>" + items[i].time + "</div></div>"
+    out =  out + "<div class='upcomingEvent'><div class='title'><h5>" + items[i].title + "</h5></div>" + "<div class='date'>" + items[i].date + "</div></div>"
   }
 }
   return out;
 });
 
-Handlebars.registerHelper('isPast', function(items, options) {
+Handlebars.registerHelper('isFuture', function(items, options) {
   var out = "";
   for(var i=0; i< items.length; i++) {
     if(new Date(items[i].date).valueOf() > new Date(today()).valueOf()) {
-    out =  out + "<div class='pastEvent'><div class='title'><h5>" + items[i].title + "</h5></div>" + "<div class='date'>" + items[i].date + "</div></div>"
+    out =  out + "<div class='pastEvent'><div class='title'><h5>" + items[i].title + "</h5></div>" + "<div class='date'>" + items[i].date  + "<div class='time'>" + items[i].time + "</div></div>"
   }
 }
   return out;
@@ -86,7 +86,7 @@ router.get('/:id', function(req, res, next) {
     .then(function(user) {
       knex.raw(`SELECT * FROM events where host_id = ${req.cookies.user_id}`)
       .then(function(user1) {
-        knex.raw(`SELECT * FROM events JOIN atendee_events ON atendee_events.event_id = events.id WHERE atendee_events.user_id = ${req.cookies.user_id}`)
+        knex.raw(`SELECT * FROM events JOIN atendee_events ON events.id = atendee_events.event_id WHERE atendee_events.user_id = ${req.cookies.user_id}`)
         .then(function(user2) {
           res.render('profile', {userInfo: user.rows[0], myEvents: user1.rows, events: user2.rows})
         })
