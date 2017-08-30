@@ -1,19 +1,61 @@
-<div class="ind-event">
-  {{#each events}}
-    {{#if @first}}
-      <p>{{this.title}}</p>
-      <p>Location: {{this.location}}</p>
-      <p>Date: {{this.date}}</p>
-      <p>Time: {{this.time}}</p>
-      <p>Type of Event: {{this.type}}</p>
-      <p>Description: {{this.description}}</p>
-      <p>Private Event: {{this.private}}</p>
-      <p>Date: {{this.date}}</p>
-    {{/if}}
-  {{/each}}
-  <h5>Attendees:</h5>
-  {{#each events}}
-    <p>{{this.first_name}}</p>
-  {{/each}}
+<div class="newEventBG valign-wrapper center">
+  <div class="container">
+    <div class="grey lighten-3 rounded-box center">
+      <div>
+        <div class="ind-event">
+          {{#each events}}
+            {{#if @first}}
+            <div class="spacer"></div>
+            <div class="row center">
+              <h1 class ="light">{{this.title}}</h1>
+            </div>
+            <div class="row center">
+              <div class="col s12 m8 offset-m2">
+                <div class="divider"></div>
+              <p>Private Event {{this.private}}</p>
+              <div class="spacer"></div>
+            </div>
+          </div>
+          <div class ="row">
+            <div class= "col s12 m4 offset-m2">
+              <h5 class="light"><b>Location:</b> {{this.location}}</h5>
+            </div>
+            <div class="col s12 m4">
+              <h5 class="light"><b>Date:</b> {{this.date}}</h5>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col s12 m4 offset-m2">
+              <h5 class="light"><b>Time:</b> {{this.time}}</h5>
+            </div>
+            <div class= "col s12 m4">
+              <h5 class="light"><b>Type of Event:</b> {{this.type}}</h5>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col s12 m8 offset-m2">
+              <h5 class="light"><b>Description:</b> {{this.description}}</h5>
+            </div>
+          </div>
+            {{/if}}
+          {{/each}}
+          <div class="row center">
+            <div class="col s12 m8 offset-m2">
+          <h3 class="light">Attendees</h3>
+          <div class="divider"></div>
+        </div>
+      </div>
+      <div class="row">
+        <ul>
+          {{#each events}}
+            <li><h4 class="light">{{this.first_name}}</h4></li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="spacer"></div>
 
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
