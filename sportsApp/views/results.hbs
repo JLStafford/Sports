@@ -1,0 +1,20 @@
+<div class="row">
+  {{#each events}}
+    <div class="col m4">
+      <div class="card">
+        <div class="card-info">
+          <span class="card-title" style="width:100%; background: rgba(0, 0, 0, 0.5);">{{this.title}}</span>
+        </div>
+        <div class="card-content">
+          <p>Location: {{this.location}}</p>
+          <p>Date: {{this.date}}</p>
+          <p>Time: {{this.time}}</p>
+          <p>Type of Event: {{this.type}}</p>
+        </div>
+        <div class="card-action">
+          <a href="/events/{{this.id}}">More Info</a>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
