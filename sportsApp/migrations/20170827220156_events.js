@@ -4,8 +4,8 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.string('title');
     table.string('location');
-    table.string('date');
-    table.string('time');
+    table.date('date');
+    table.time('time');
     table.string('type');
     table.integer('host_id');
     table.string('description');

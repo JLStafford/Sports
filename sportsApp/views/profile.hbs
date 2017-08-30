@@ -1,8 +1,8 @@
 <div class="profile-forms">
-  <form class="delete-user" action="/users/{{user.id}}/delete" method="POST">
+  <form class="delete-user" action="/users/{{userInfo.id}}/delete" method="POST">
     <input type="submit" name="delete" value="Delete">
   </form>
-  <form class="logout-user" action="/users/{{user.id}}/logout" method="get">
+  <form class="logout-user" action="/users/{{userInfo.id}}/logout" method="get">
     <input type="submit" name="logout" value="Logout">
   </form>
 </div>
@@ -16,33 +16,26 @@
   </form>
 </div>
 
+
 <div class="events-upcoming">
-  {{#each events}}
-
-      <div class="individual-event">
-        <div class="event-title"><h3>{{@index}}: {{this.title}}</h3></div>
-        <div class="event-date"><p>Date: {{@index}}: {{this.date}}</p></div>
-        <div class="event-time"><p>Time: {{@index}}: {{this.time}}</p></div>
-      </div>
-
-  {{/each}}
+  <h3>Upcoming Events</h3>
+    {{#isFuture events}}
+      <div class="individual-event"></div>
+      {{/isFuture}}
 </div>
 <div class="events-past">
-  {{#each events}}
-    <div class="individual-event">
-      <div class="event-title"><h3>{{@index}}: {{this.title}}</h3></div>
-      <div class="event-date"><p>Date: {{@index}}: {{this.date}}</p></div>
-    </div>
-  {{/each}}
+  <h3>Past Events</h3>
+  {{#isPast events}}
+    <div class="individual-event"></div>
+  {{/isPast}}
 </div>
 <div class="events-host">
+  <h3>My Hosted Events</h3>
   {{#each myEvents}}
-    {{#if {{@index}}: {{this.host_id}} === ${userInfo.id}}
       <div class="individual-event">
-        <div class="event-title"><h3>{{@index}}: {{this.title}}</h3></div>
-        <div class="event-date"><p>Date: {{@index}}: {{this.date}}</p></div>
-        <div class="event-time"><p>Time: {{@index}}: {{this.time}}</p></div>
+        <div class="event-title"><h5>{{this.title}}</h5></div>
+        <div class="event-date"><p>Date:{{this.date}}</p></div>
+        <div class="event-time"><p>Time:{{this.time}}</p></div>
       </div>
-    {{/if}}
   {{/each}}
 </div>

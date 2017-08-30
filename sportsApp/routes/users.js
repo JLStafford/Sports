@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var knex = require('../db/knex.js');
 var bcrypt = require('bcrypt');
-
+var Handlebars = require('hbs');
 /* GET users listing. */
 
 
@@ -45,6 +45,40 @@ router.post('/new', function(req, res, next) {
   }
 });
 
+//today function for helper method
+function today() {
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+  var yyyy = today.getFullYear();
+
+  if(dd<10) {dd = '0'+dd}
+  if(mm<10) {mm = '0'+mm}
+  return today = yyyy + '-' + mm + '-' + dd;
+}
+
+//helper methods
+Handlebars.registerHelper('isFuture', function(items, options) {
+  var out = "";
+  for(var i=0; i< items.length; i++) {
+    if(new Date(items[i].date).valueOf() < new Date(today()).valueOf()) {
+    out =  out + "<div class='upcomingEvent'><div class='title'><h5>" + items[i].title + "</h5></div>" + "<div class='date'>" + items[i].date + "</div>" + "<div class='time'>" + items[i].time + "</div></div>"
+  }
+}
+  return out;
+});
+
+Handlebars.registerHelper('isPast', function(items, options) {
+  var out = "";
+  for(var i=0; i< items.length; i++) {
+    if(new Date(items[i].date).valueOf() > new Date(today()).valueOf()) {
+    out =  out + "<div class='pastEvent'><div class='title'><h5>" + items[i].title + "</h5></div>" + "<div class='date'>" + items[i].date + "</div></div>"
+  }
+}
+  return out;
+});
+
+
 // get profile view
 router.get('/:id', function(req, res, next) {
   if(req.cookies.user_id) {
@@ -76,6 +110,7 @@ router.get('/:id/logout', function(req, res, next) {
   res.clearCookie('user_id');
   res.redirect('/')
 });
+
 
 
 
