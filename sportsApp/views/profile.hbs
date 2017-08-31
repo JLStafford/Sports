@@ -18,7 +18,7 @@
           </form></li>
         </ul>
       </div>
-      
+
       <div class="nav-content">
         <ul class="tabs tabs-transparent">
           <!-- <li class="tab">
@@ -51,39 +51,41 @@
       </div>
     </div> -->
 
-
-    <div id="past" class="col s12 white-text">
-      <div class="events-past">
-        <h3>Past Events</h3>
-          {{#isPast events}}
-            <div class="individual-event"></div>
-          {{/isPast}}
-      </div>
-    </div>
-
-
-    <div id="hosted" class="col s12 white-text">
-      <div class="events-host">
-        <h3>My Hosted Events</h3>
-          {{#each myEvents}}
-            <div class="individual-event">
-              <div class="event-title"><h5>{{this.title}}</h5></div>
-              <div class="event-date"><p>Date:{{this.date}}</p></div>
-              <div class="event-time"><p>Time:{{this.time}}</p></div>
+    <div class="container">
+      <div class="grey lighten-3 rounded-box opacity-results center">
+          <div id="past" class="col s12">
+            <div class="events-past">
+              <h3>Past Events</h3>
+                {{#isPast events}}
+                  <div class="individual-event"></div>
+                {{/isPast}}
             </div>
-          {{/each}}
+          </div>
+
+
+          <div id="hosted" class="col s12 ">
+            <div class="events-host">
+              <h3>My Hosted Events</h3>
+                {{#each myEvents}}
+                  <div class="individual-event">
+                    <div class="event-title"><h5>{{this.title}}</h5></div>
+                    <div class="event-date"><p>Date:{{this.date}}</p></div>
+                    <div class="event-time"><p>Time:{{this.time}}</p></div>
+                  </div>
+                {{/each}}
+              </div>
+            </div>
+
+
+            <div id="test4" class="col s12">
+              <h3>Upcoming Events</h3>
+                {{#isFuture events}}
+                  <div class="individual-event"></div>
+                  {{/isFuture}}
+            </div>
+
         </div>
       </div>
-
-
-      <div id="test4" class="col s12 white-text">
-        <h3>Upcoming Events</h3>
-          {{#isFuture events}}
-            <div class="individual-event"></div>
-            {{/isFuture}}
-      </div>
-
-
 
 
 

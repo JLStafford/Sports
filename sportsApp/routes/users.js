@@ -68,7 +68,7 @@ Handlebars.registerHelper('isPast', function(items, options) {
   var out = "";
   for (var i = 0; i < items.length; i++) {
     if (new Date(items[i].date).valueOf() < new Date(today()).valueOf()) {
-      out = out + "<div class='upcomingEvent'><div class='title'><h5>" + items[i].title + "</h5></div>" + "<div class='date'>" + items[i].date + "</div></div>"
+      out = out + `<div class='pastEvent'><a href='/events/${items[i].event_id}'><div class='title'><h5>` + items[i].title + "</h5></div></a>" + "<div class='date'>" + items[i].date + "</div></div>"
     }
   }
   return out;
@@ -78,7 +78,7 @@ Handlebars.registerHelper('isFuture', function(items, options) {
   var out = "";
   for (var i = 0; i < items.length; i++) {
     if (new Date(items[i].date).valueOf() > new Date(today()).valueOf()) {
-      out = out + "<div class='pastEvent'><div class='title'><h5>" + items[i].title + "</h5></div>" + "<div class='date'>" + items[i].date + "<div class='time'>" + items[i].time + "</div></div>"
+      out = out + `<div class='upcomingEvent'><a href='/events/${items[i].event_id}'><div class='title'><h5>` + items[i].title + "</h5></div></a>" + "<div class='date'>" + items[i].date + "<div class='time'>" + items[i].time + "</div></div>"
     }
   }
   return out;
@@ -99,7 +99,8 @@ router.get('/:id', function(req, res, next) {
                   myEvents: user1.rows,
                   events: user2.rows,
                   userFirstName: user.rows[0].first_name,
-                  userLastName: user.rows[0].last_name
+                  userLastName: user.rows[0].last_name,
+                  upcomingEvent_id: user1.rows[0].id
                 })
               })
           })
