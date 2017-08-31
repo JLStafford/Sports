@@ -89,6 +89,7 @@ Handlebars.registerHelper('isFuture', function(items, options) {
 router.get('/:id', function(req, res, next) {
   if (req.cookies.user_id === req.params.id) {
     knex.raw(`SELECT * FROM users where id = ${req.cookies.user_id}`)
+<<<<<<< HEAD
       .then(function(user) {
         knex.raw(`SELECT * FROM events where host_id = ${req.cookies.user_id}`)
           .then(function(user1) {
@@ -103,9 +104,18 @@ router.get('/:id', function(req, res, next) {
                 })
               })
           })
+=======
+    .then(function(user) {
+      knex.raw(`SELECT * FROM events where host_id = ${req.cookies.user_id}`)
+      .then(function(user1) {
+        knex.raw(`SELECT * FROM events JOIN atendee_events ON events.id = atendee_events.event_id WHERE atendee_events.user_id = ${req.cookies.user_id}`)
+        .then(function(user2) {
+          res.render('profile', {userInfo: user.rows[0], myEvents: user1.rows, events: user2.rows})
+        })
+>>>>>>> 5aa923b1889e172366b29779d1f12fabd05a7263
       })
   } else {
-    res.redirect('/login');
+    res.redirect('/users/login');
   }
 });
 
