@@ -19,6 +19,14 @@
   margin-left: 15vw;
 }
 
+.create-event-width {
+  width: 100%;
+}
+
+.ind-event-center {
+  margin-left: 10vw;
+}
+
 .loginBG {
   background: url('login.jpeg') no-repeat center center fixed;
   -webkit-background-size: cover;

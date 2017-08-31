@@ -1,4 +1,4 @@
-<div class="newEventBG valign-wrapper center">
+<div class="newEventBG ">
   <nav>
     <div class="nav-wrapper light-green">
       <div class="container">
@@ -11,9 +11,10 @@
     </div>
     </div>
   </nav>
-  <div class="container">
-    <div class="grey lighten-3 rounded-box opacity-results center">
-      <div>
+  <div class="container section valign-wrapper center">
+    <div class="grey lighten-3 rounded-box create-event-width
+  opacity-results  center">
+      <div class="center">
         <div class="ind-event">
           {{#each events}}
             {{#if @first}}
@@ -67,7 +68,7 @@
           </div>
           <div class="rsvp">
             <form class="rsvp" action="/events/{{routeId}}" method="POST">
-              <input type="submit" name="rsvp" value="RSVP">
+              <input class="btn-large light-green" type="submit" name="rsvp" value="RSVP">
             </form>
           </div>
           <div class="spacer"></div>

@@ -2,26 +2,21 @@
   <nav>
     <div class="nav-wrapper light-green">
       <div class="container">
-      <a href="#" class="brand-logo center light">Results</a>
+      <a href="#" class="brand-logo center light">Create an Event</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="/newEvent">Create</a></li>
+        <!-- <li><a href="/newEvent">Create</a></li> -->
         <li><a href="/search">Search</a></li>
         <li><a href=`users/'${req.cookies.id}'`>Home</a></li>
       </ul>
     </div>
     </div>
   </nav>
-  <div class="container valign-wrapper center">
-    <div class="section center">
-    <div class="grey lighten-3 rounded-box opacity-results center create-event-center">
-      <div>
-        <div class="create-event">
-          <form class="create-event-form" action="/newEvent" method="POST">
-            <div class="row spacer"></div>
-            <div class="row center">
-              <h2 class="light">Create an Event</h2>
-            </div>
-            <div class="row spacer"></div>
+  <div class="spacer">
+
+  </div>
+  <div class="container grey lighten-3 rounded-box opacity-results center section valign-wrapper center ">
+          <form class="create-event-form create-event-width" action="/newEvent" method="POST">
+            <div class="spacer"></div>
             <div class="row center">
               <div class="col s12 m4 offset-m2">
                 <input type="text" name="title" placeholder="Event Title" required>
@@ -62,21 +57,8 @@
                   <input type="text" name="description" placeholder="Brief Description" required>
                 </div>
               </div>
-              <div class="row spacer"></div>
-              <div class="row center">
-                <div class="col s12 m4 offset-m2">
-                  <button class="btn-large" type="submit" name="action">Back
-                  </button>
-                </div>
-                <div class="col s12 m4">
-                  <input class="btn-large" type="submit" name="submit" value="Create">
-                  <div class="row spacer"></div>
-                </div>
+
               </form>
-            </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
