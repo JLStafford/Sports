@@ -91,12 +91,12 @@ Handlebars.registerHelper('isFuture', function(items, options) {
 
 // get profile view
 router.get('/:id', function(req, res, next) {
-  if (req.cookies.user_id === req.params.id || req.cookies.user_id === 4) {
-    knex.raw(`SELECT * FROM users where id = ${req.cookies.user_id}`)
+  if (req.cookies.user_id === req.params.id || req.cookies.user_id === '4') {
+    knex.raw(`SELECT * FROM users where id = ${req.params.id}`)
       .then(function(user) {
-        knex.raw(`SELECT * FROM events where host_id = ${req.cookies.user_id}`)
+        knex.raw(`SELECT * FROM events where host_id = ${req.params.id}`)
           .then(function(user1) {
-            knex.raw(`SELECT * FROM events join atendee_events on events.id = atendee_events.event_id where atendee_events.user_id = ${req.cookies.user_id} `)
+            knex.raw(`SELECT * FROM events join atendee_events on events.id = atendee_events.event_id where atendee_events.user_id = ${req.params.id} `)
               .then(function(user2) {
                 res.render('profile', {
                   userInfo: user.rows[0],

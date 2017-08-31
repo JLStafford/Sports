@@ -28,4 +28,29 @@ router.post('/:id', function(req, res, next) {
   }
 });
 
+//get edit event
+router.get('/:id/edit', function(req, res, next) {
+  knex.raw(`SELECT * FROM events WHERE id = ${req.params.id}`)
+  .then(function(info) {
+    res.render("editEvent", {eventInfo: info.rows[0], cookie: req.cookies.user_id})
+  })
+})
+
+//post edit/update event
+router.post('/:id/edit', function(req, res, next) {
+  console.log(req.params.id);
+  knex.raw(`UPDATE events SET title = '${req.body.title}', location = '${req.body.location}', date = '${req.body.date}', time = '${req.body.time}', type = '${req.body.type}', description = '${req.body.description}', private = ${req.body.private} WHERE events.id = ${req.params.id}`)
+  .then(function(info) {
+    res.redirect(`/users/${req.cookies.user_id}`)
+  })
+})
+
+//delete event
+router.post('/:id/delete', function(req, res, next) {
+  knex.raw(`DELETE FROM events WHERE id = ${req.params.id}`)
+  .then(function(info) {
+    res.redirect(`/users/${req.params.id}`)
+  })
+})
+
 module.exports = router;
