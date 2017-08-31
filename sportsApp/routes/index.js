@@ -10,17 +10,15 @@ router.get('/', function(req, res, next) {
 //get search
 router.get('/search', function(req, res, next) {
   if(req.cookies.user_id) {
-
+    res.render('search');
   }
-  res.render('search');
 });
 
 //post search
 router.post('/search', function(req, res, next) {
   if(req.cookies.user_id) {
-
+    res.redirect('/results');
   }
-  res.redirect('/results');
 });
 
 //get results
@@ -36,9 +34,8 @@ router.get('/results', function(req, res, next) {
 //get create new event form
 router.get('/newEvent', function(req, res, next) {
   if(req.cookies.user_id) {
-
+    res.render('newEvent');
   }
-  res.render('newEvent');
 });
 
 //post create new event form
