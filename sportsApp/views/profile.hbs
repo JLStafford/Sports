@@ -60,14 +60,17 @@
               <h3>My Hosted Events</h3>
                 {{#each myEvents}}
                   <div class="individual-event">
-                    <div class="event-title" name"title"><h5>{{this.title}}</h5></div>
+                    <div class="event-title" name"title"><h3>{{this.title}}</h3></div>
                     <div class="event-date"><p>Date: {{this.date}}</p></div>
                     <div class="event-time"><p>Time: {{this.time}}</p></div>
                     <form class="edit" action="/events/{{this.id}}/edit" method="get">
-                      <input type="submit" name="edit" value="edit event">
+                      <input class="btn light-green" type="submit" name="edit" value="edit event">
                     </form>
                   </div>
                 {{/each}}
+                <div class="spacer">
+
+                </div>
               </div>
             </div>
 
@@ -81,6 +84,7 @@
 
         </div>
       </div>
+      <div class="spacer"></div>
 
 
 
