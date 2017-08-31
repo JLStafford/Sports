@@ -14,22 +14,40 @@ router.get('/search', function(req, res, next) {
   }
 });
 
-//post search
-router.post('/search', function(req, res, next) {
-  if(req.cookies.user_id) {
-    res.redirect('/results');
+
+//get results
+router.post('/results/type', function(req, res, next) {
+  if(req.cookies.user_id && req.body.type) {
+      knex.raw(`SELECT * FROM events WHERE events.type = '${req.body.type}'`)
+      .then(function(typeData) {
+        console.log(typeData.rows);
+        res.render('results', {results: typeData.rows});
+      });
   }
 });
 
-//get results
-router.get('/results', function(req, res, next) {
-  if(req.cookies.user_id) {
-    knex.raw(`SELECT * FROM events`)
-    .then(function(data) {
-      res.render('results', {events: data.rows});
+router.post('/results/date', function(req, res, next) {
+  console.log(req.body)
+  if(req.cookies.user_id && req.body.date) {
+    knex.raw(`SELECT * FROM events WHERE events.date = '${req.body.date}'`)
+    .then(function(dateData) {
+      console.log(dateData.rows)
+      res.render('results', {results: dateData.rows});
     });
   }
 });
+
+router.post('/results/all', function(req, res, next) {
+  console.log(req.body);
+  if(req.cookies.user_id) {
+    knex.raw(`SELECT * FROM events`)
+    .then(function(allData) {
+      console.log(allData.rows);
+      res.render('results', {results: allData.rows});
+    });
+  }
+});
+
 
 //get create new event form
 router.get('/newEvent', function(req, res, next) {
