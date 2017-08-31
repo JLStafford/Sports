@@ -21,8 +21,10 @@ router.post('/results/type', function(req, res, next) {
       knex.raw(`SELECT * FROM events WHERE events.type = '${req.body.type}'`)
       .then(function(typeData) {
         console.log(typeData.rows);
-        res.render('results', {results: typeData.rows});
+        res.render('results', {results: typeData.rows, cookie: req.cookies.user_id});
       });
+  } else {
+    res.redirect('/search');
   }
 });
 
@@ -32,8 +34,10 @@ router.post('/results/date', function(req, res, next) {
     knex.raw(`SELECT * FROM events WHERE events.date = '${req.body.date}'`)
     .then(function(dateData) {
       console.log(dateData.rows)
-      res.render('results', {results: dateData.rows});
+      res.render('results', {results: dateData.rows, cookie: req.cookies.user_id});
     });
+  } else {
+    res.redirect('/search');
   }
 });
 
@@ -43,7 +47,7 @@ router.post('/results/all', function(req, res, next) {
     knex.raw(`SELECT * FROM events`)
     .then(function(allData) {
       console.log(allData.rows);
-      res.render('results', {results: allData.rows});
+      res.render('results', {results: allData.rows, cookie: req.cookies.user_id});
     });
   }
 });
@@ -52,7 +56,7 @@ router.post('/results/all', function(req, res, next) {
 //get create new event form
 router.get('/newEvent', function(req, res, next) {
   if(req.cookies.user_id) {
-    res.render('newEvent');
+    res.render('newEvent', {cookie: req.cookies.user_id});
   }
 });
 

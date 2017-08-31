@@ -14,7 +14,8 @@ router.get('/login', function(req, res, next) {
 // submit login
 router.post('/login', function(req, res, next) {
   knex.raw(`SELECT * FROM users WHERE email = '${req.body.email}'`)
-    .then(function(users) {
+  .then(function(users) {
+    if (users.rows[0]) {
       bcrypt.compare(req.body.password, users.rows[0].password, function(err, resp) {
         if (resp) {
           res.cookie('user_id', users.rows[0].id)
@@ -23,7 +24,10 @@ router.post('/login', function(req, res, next) {
           res.redirect('/login')
         }
       });
-    });
+    } else {
+      res.redirect('/users/login')
+    }
+  });
 });
 
 //get create user
@@ -87,7 +91,7 @@ Handlebars.registerHelper('isFuture', function(items, options) {
 
 // get profile view
 router.get('/:id', function(req, res, next) {
-  if (req.cookies.user_id === req.params.id) {
+  if (req.cookies.user_id === req.params.id || req.cookies.user_id === 4) {
     knex.raw(`SELECT * FROM users where id = ${req.cookies.user_id}`)
       .then(function(user) {
         knex.raw(`SELECT * FROM events where host_id = ${req.cookies.user_id}`)
@@ -99,8 +103,7 @@ router.get('/:id', function(req, res, next) {
                   myEvents: user1.rows,
                   events: user2.rows,
                   userFirstName: user.rows[0].first_name,
-                  userLastName: user.rows[0].last_name,
-                  upcomingEvent_id: user1.rows[0].id
+                  userLastName: user.rows[0].last_name
                 })
               })
           })
