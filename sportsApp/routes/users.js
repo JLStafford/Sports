@@ -14,20 +14,20 @@ router.get('/login', function(req, res, next) {
 // submit login
 router.post('/login', function(req, res, next) {
   knex.raw(`SELECT * FROM users WHERE email = '${req.body.email}'`)
-  .then(function(users) {
-    if (users.rows[0]) {
-      bcrypt.compare(req.body.password, users.rows[0].password, function(err, resp) {
-        if (resp) {
-          res.cookie('user_id', users.rows[0].id)
-          res.redirect(`/users/${users.rows[0].id}`)
-        } else {
-          res.redirect('/login')
-        }
-      });
-    } else {
-      res.redirect('/users/login')
-    }
-  });
+    .then(function(users) {
+      if (users.rows[0]) {
+        bcrypt.compare(req.body.password, users.rows[0].password, function(err, resp) {
+          if (resp) {
+            res.cookie('user_id', users.rows[0].id)
+            res.redirect(`/users/${users.rows[0].id}`)
+          } else {
+            res.redirect('/login')
+          }
+        });
+      } else {
+        res.redirect('/users/login')
+      }
+    });
 });
 
 //get create user
@@ -72,7 +72,7 @@ Handlebars.registerHelper('isPast', function(items, options) {
   var out = "";
   for (var i = 0; i < items.length; i++) {
     if (new Date(items[i].date).valueOf() < new Date(today()).valueOf()) {
-      out = out + `<div class='pastEvent'><a href='/events/${items[i].event_id}'><div class='title'><h5>` + items[i].title + "</h5></div></a>" + "<div class='date'>" + items[i].date + "</div></div>"
+      out = out + `<div class='pastEvent'><a href='/events/${items[i].event_id}' style="color:black;"><div class='title'><h5>` + items[i].title + "</h5></div></a>" + "<div class='type'>" + items[i].type + "</div><div class='date'>" + items[i].date.toDateString() + "</div></div>"
     }
   }
   return out;
@@ -82,7 +82,7 @@ Handlebars.registerHelper('isFuture', function(items, options) {
   var out = "";
   for (var i = 0; i < items.length; i++) {
     if (new Date(items[i].date).valueOf() > new Date(today()).valueOf()) {
-      out = out + `<div class='upcomingEvent'><a href='/events/${items[i].event_id}'><div class='title'><h5>` + items[i].title + "</h5></div></a>" + "<div class='date'>" + items[i].date + "<div class='time'>" + items[i].time + "</div></div>"
+      out = out + `<div class='upcomingEvent'><a href='/events/${items[i].event_id}' style="color:black;"><div class='title'><h5>` + items[i].title + "</h5></div></a>" + "<div class='type'>" + items[i].type + "</div><div class='date'>" + items[i].date.toDateString() + "</div><div class='time'>" + items[i].time + "</div></div>"
     }
   }
   return out;

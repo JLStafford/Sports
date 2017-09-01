@@ -4,18 +4,26 @@
       <div class="nav-wrapper">
         <a href="#" class="brand-logo">{{userFirstName}} {{userLastName}}</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><form class="delete-user" action="/users/{{userInfo.id}}/delete" method="POST">
-            <input class="btn-flat white-text light light-green" type="submit" name="delete" value="Delete">
-          </form></li>
-          <li><form class="logout-user" action="/users/{{userInfo.id}}/logout" method="get">
-            <input class="btn-flat white-text light light-green" type="submit" name="logout" value="Logout">
-          </form></li>
-          <li><form class="event-search" action="/search" method="GET">
-            <input class="btn-flat white-text light light-green" type="submit" name="search" value="Search For Events">
-          </form></li>
-          <li><form class="even-create" action="/newEvent" method="GET">
-            <input class="btn-flat white-text light light-green" type="submit" name="create" value="Create New Event">
-          </form></li>
+          <li>
+            <form class="delete-user" action="/users/{{userInfo.id}}/delete" method="POST">
+              <input class="btn-flat white-text light light-green" type="submit" name="delete" value="Delete">
+            </form>
+          </li>
+          <li>
+            <form class="logout-user" action="/users/{{userInfo.id}}/logout" method="get">
+              <input class="btn-flat white-text light light-green" type="submit" name="logout" value="Logout">
+            </form>
+          </li>
+          <li>
+            <form class="event-search" action="/search" method="GET">
+              <input class="btn-flat white-text light light-green" type="submit" name="search" value="Search For Events">
+            </form>
+          </li>
+          <li>
+            <form class="even-create" action="/newEvent" method="GET">
+              <input class="btn-flat white-text light light-green" type="submit" name="create" value="Create New Event">
+            </form>
+          </li>
         </ul>
       </div>
 
@@ -28,12 +36,12 @@
             <a href="#test4">Upcoming Events</a>
           </li>
           <li class="tab">
-            <a  href="#past">Past Events</a>
+            <a href="#past">Past Events</a>
           </li>
           <li class="tab">
             <a href="#hosted">Hosted Events</a>
           </li>
-       </ul>
+        </ul>
       </div>
 
 
@@ -43,48 +51,56 @@
 
 
 
-    <div class="container">
-      <div class="grey lighten-3 rounded-box opacity-results center">
-          <div id="past" class="col s12">
-            <div class="events-past">
-              <h3>Past Events</h3>
-                {{#isPast events}}
-                  <div class="individual-event"></div>
-                {{/isPast}}
-            </div>
-          </div>
-
-
-          <div id="hosted" class="col s12 ">
-            <div class="events-host">
-              <h3>My Hosted Events</h3>
-                {{#each myEvents}}
-                  <div class="individual-event">
-                    <div class="event-title" name"title"><h3>{{this.title}}</h3></div>
-                    <div class="event-date"><p>Date: {{this.date}}</p></div>
-                    <div class="event-time"><p>Time: {{this.time}}</p></div>
-                    <form class="edit" action="/events/{{this.id}}/edit" method="get">
-                      <input class="btn light-green" type="submit" name="edit" value="edit event">
-                    </form>
-                  </div>
-                {{/each}}
-                <div class="spacer">
-
-                </div>
-              </div>
-            </div>
-
-
-            <div id="test4" class="col s12">
-              <h3>Upcoming Events</h3>
-                {{#isFuture events}}
-                  <div class="individual-event"></div>
-                  {{/isFuture}}
-            </div>
-
+  <div class="container">
+    <div class="grey lighten-3 rounded-box opacity-results center">
+      <div id="past" class="col s12">
+        <div class="events-past">
+          <h3>Past Events</h3>
+          {{#isPast events}}
+            <div class="individual-event"></div>
+          {{/isPast}}
         </div>
       </div>
-      <div class="spacer"></div>
+
+
+      <div id="hosted" class="col s12 ">
+        <div class="events-host">
+          <h3>My Hosted Events</h3>
+          {{#each myEvents}}
+            <div class="individual-event">
+              <div class="event-title" name "title">
+                <h3>{{this.title}}</h3></div>
+              <div class="event-type">
+                <p>Sport: {{this.type}}</p>
+              </div>
+              <div class="event-date">
+                <p>Date: {{this.date}}</p>
+              </div>
+              <div class="event-time">
+                <p>Time: {{this.time}}</p>
+              </div>
+              <form class="edit" action="/events/{{this.id}}/edit" method="get">
+                <input class="btn light-green" type="submit" name="edit" value="edit event">
+              </form>
+            </div>
+          {{/each}}
+          <div class="spacer">
+
+          </div>
+        </div>
+      </div>
+
+
+      <div id="test4" class="col s12">
+        <h3>Upcoming Events</h3>
+        {{#isFuture events}}
+          <div class="individual-event"></div>
+        {{/isFuture}}
+      </div>
+
+    </div>
+  </div>
+  <div class="spacer"></div>
 
 
 
