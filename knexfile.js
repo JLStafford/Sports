@@ -18,7 +18,7 @@ module.exports = {
     client: 'postgresql',
     connection: {
       database: 'my_db',
-      user:     'username',
+      user: 'username',
       password: 'password'
     },
     pool: {
@@ -33,8 +33,8 @@ module.exports = {
   production: {
     client: 'postgresql',
     connection: {
-      database: 'my_db',
-      user:     'username',
+      database: 'postgres://cdezepdikwknym:07e0d58c039124d2033018e4e1afa12ebae90b9ce35523a44db520594ddb96b4@ec2-54-225-88-191.compute-1.amazonaws.com:5432/de8t3h56mm1ss6',
+      user: 'username',
       password: 'password'
     },
     pool: {
