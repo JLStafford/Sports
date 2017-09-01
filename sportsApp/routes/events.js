@@ -9,7 +9,7 @@ router.get('/:id', function(req, res, next) {
     knex.raw(`SELECT events.*, users.first_name FROM events JOIN atendee_events ON atendee_events.event_id = events.id JOIN users ON users.id = atendee_events.user_id WHERE events.id = ${req.params.id}`)
       .then(function(data) {
         console.log(data.rows);
-        res.render('indEvent', {events: data.rows, routeId: data.rows[0].id});
+        res.render('indEvent', {events: data.rows, routeId: data.rows[0].id, cookie: req.cookies.user_id});
       });
   } else {
     res.redirect("/")
@@ -21,7 +21,7 @@ router.post('/:id', function(req, res, next) {
   if (req.cookies.user_id) {
     knex.raw(`INSERT INTO atendee_events VALUES (default, ${req.cookies.user_id}, ${req.params.id})`)
     .then(function(data3) {
-      res.redirect(`/events/${req.params.id}`);
+      res.redirect(`/events/${req.params.id}`, { cookie: req.cookies.user_id });
     })
   } else {
     res.redirect('/');
